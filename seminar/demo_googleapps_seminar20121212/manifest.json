@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "セミナー用デモ",
+  "version": "1.0.0.0",
+  "background" :{
+    "page": "html/background.html"
+  },
+  "description": "まるわかりセミナー",
+  "browser_action": {
+    "default_icon": "icon.png",
+    // popupは右上のアイコンクリック時に呼び出されます
+    "default_popup": "html/popup.html",
+    "default_title": "タイトル"
+  },
+  "homepage_url": "http://github.com/tetsunosuke",
+  // すべてのページでContextMenusを実行
+  "permissions": [
+    "tabs", "http://*/*", "contextMenus"
+  ],
+  "content_scripts": [
+    {
+      // content_script は ヤフーの検索結果でのみ発動
+      "matches": ["http://search.yahoo.co.jp/*"],
+      // ショートカット利用のためにjquery, shortcut.js を読んでおきます
+      "js": ["js/lib/jquery.js", "js/lib/shortcut.js", "js/contentscript.js"]
+    }
+  ],
+  // omniboxの起動コマンド
+  "omnibox": { "keyword" : "ggrks" }
+}
